@@ -1,0 +1,44 @@
+*.class
+dist
+download
+push.sh
+remotebuild.py
+
+## gradle
+/.gradle
+/build
+/eclipse
+/gradlew.bat
+
+## ForgeGradle
+/run
+/out
+
+## idea
+*.iml
+*.ipr
+*.iws
+
+## eclipse
+/.settings
+/.metadata
+/.classpath
+/.project
+/bin
+/.idea
+/client/
+/Server/
+/classes/
+## misc
+/libs/Thaumcraft-deobf*.jar*
+/libs/*
+TCDEOBF*
+## Ignore OS cache files
+*.DS_Store
+_MACOSX
+Thumbs.db
+
+## Ignore unnecessary files
+*.log
+*.lck
+symlink.bat
