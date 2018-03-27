@@ -139,12 +139,7 @@ public class EntityPinky extends EntityCreatureRideable implements IAnimals, IGr
     // ==================================================
     @Override
     public void mountAbility(Entity rider) {
-    	if(this.worldObj.isRemote)
-    		return;
-    	
-    	if(this.abilityToggled)
-    		return;
-    	if(this.getStamina() < this.getStaminaCost())
+    	if(this.worldObj.isRemote || this.abilityToggled || this.getStamina() < this.getStaminaCost())
     		return;
     	
     	// Withering Roar:

@@ -138,13 +138,13 @@ public class EntityZephyr extends EntityCreatureTameable implements IMob, IGroup
         
         // Particles:
         if(this.worldObj.isRemote) {
-            this.worldObj.spawnParticle("cloud", this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle("cloud", this.posX + (this.rand.nextFloat() - 0.5F) * (double) this.width, this.posY + this.rand.nextFloat() * (double) this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double) this.width, 0.0D, 0.0D, 0.0D);
             
             List aoeTargets = this.getNearbyEntities(EntityLivingBase.class, 4);
             for(Object entityObj : aoeTargets) {
                 EntityLivingBase target = (EntityLivingBase)entityObj;
                 if(this.canAttackClass(entityObj.getClass()) && this.canAttackEntity(target) && this.getEntitySenses().canSee(target)) {
-                    this.worldObj.spawnParticle("magicCrit", target.posX + (this.rand.nextDouble() - 0.5D) * (double) target.width, target.posY + this.rand.nextDouble() * (double) target.height, target.posZ + (this.rand.nextDouble() - 0.5D) * (double) target.width, 0.0D, 0.0D, 0.0D);
+                    this.worldObj.spawnParticle("magicCrit", target.posX + (this.rand.nextFloat() - 0.5F) * (double) target.width, target.posY + this.rand.nextFloat() * (double) target.height, target.posZ + (this.rand.nextFloat() - 0.5F) * (double) target.width, 0.0D, 0.0D, 0.0D);
                 }
             }
         }
@@ -176,10 +176,7 @@ public class EntityZephyr extends EntityCreatureTameable implements IMob, IGroup
     // ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(ObjectManager.getPotionEffect("Penetration") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Penetration").id) return false;
-        if(ObjectManager.getPotionEffect("Paralysis") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
+        if(ObjectManager.getPotionEffect("Penetration") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Penetration").id || ObjectManager.getPotionEffect("Paralysis") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
         return super.isPotionApplicable(potionEffect);
     }
     

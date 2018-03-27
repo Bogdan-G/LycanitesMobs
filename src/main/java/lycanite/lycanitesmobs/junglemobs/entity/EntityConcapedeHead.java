@@ -161,8 +161,8 @@ public class EntityConcapedeHead extends EntityCreatureAgeable implements IAnima
 	// ========== Pathing Weight ==========
 	@Override
 	public float getBlockPathWeight(int par1, int par2, int par3) {
-		if(this.worldObj.getBlock(par1, par2 - 1, par3) != Blocks.air) {
-			Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		if(block != Blocks.air) {
 			if(block.getMaterial() == Material.grass)
 				return 10F;
 			if(block.getMaterial() == Material.ground)
@@ -268,8 +268,7 @@ public class EntityConcapedeHead extends EntityCreatureAgeable implements IAnima
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

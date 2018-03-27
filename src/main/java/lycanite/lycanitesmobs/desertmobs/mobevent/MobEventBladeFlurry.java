@@ -35,12 +35,12 @@ public class MobEventBladeFlurry extends MobEventBase {
 	public void onSpawn(EntityLiving entity) {
 		super.onSpawn(entity);
 
-        double roll = entity.getRNG().nextDouble();
+        double roll = entity.getRNG().nextFloat();
         if(entity instanceof EntityCreatureBase) {
             if(roll >= 0.8D && roll < 0.9D)
-        	    ((EntityCreatureBase)entity).setSizeScale(3.0D + (0.35D * (0.5D - entity.getRNG().nextDouble())));
+        	    ((EntityCreatureBase)entity).setSizeScale(3.0D + (0.35D * (0.5D - entity.getRNG().nextFloat())));
             else if(roll >= 0.9D)
-                ((EntityCreatureBase)entity).setSizeScale(0.5D - (0.2D * (0.5D - entity.getRNG().nextDouble())));
+                ((EntityCreatureBase)entity).setSizeScale(0.5D - (0.2D * (0.5D - entity.getRNG().nextFloat())));
         }
 	}
 }

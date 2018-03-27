@@ -116,7 +116,7 @@ public class EntityYeti extends EntityCreatureAgeable implements IAnimals, IGrou
         // Particles:
         if(this.worldObj.isRemote)
 	        for(int i = 0; i < 2; ++i) {
-	            this.worldObj.spawnParticle("snowshovel", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+	            this.worldObj.spawnParticle("snowshovel", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
 	        }
     }
 	
@@ -127,11 +127,12 @@ public class EntityYeti extends EntityCreatureAgeable implements IAnimals, IGrou
 	// ========== Pathing Weight ==========
 	@Override
 	public float getBlockPathWeight(int par1, int par2, int par3) {
-		if(this.worldObj.getBlock(par1, par2 - 1, par3) != Blocks.air) {
-			Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
-			if(block.getMaterial() == Material.grass || block.getMaterial() == Material.snow)
+		Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		if(block != Blocks.air) {
+			Material mblock = block.getMaterial();
+			if(mblock == Material.grass || mblock == Material.snow)
 				return 10F;
-			if(block.getMaterial() == Material.ground || block.getMaterial() == Material.ice)
+			if(mblock == Material.ground || mblock == Material.ice)
 				return 7F;
 		}
         return super.getBlockPathWeight(par1, par2, par3);
@@ -169,14 +170,12 @@ public class EntityYeti extends EntityCreatureAgeable implements IAnimals, IGrou
    	// ==================================================
     @Override
     public boolean isDamageTypeApplicable(String type) {
-        if(type.equals("ooze")) return false;
-        return super.isDamageTypeApplicable(type);
+        return !type.equals("ooze") && super.isDamageTypeApplicable(type);
     }
 
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.hunger.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.moveSlowdown.id || par1PotionEffect.getPotionID() == Potion.hunger.id) return false;
         return super.isPotionApplicable(par1PotionEffect);
     }
     

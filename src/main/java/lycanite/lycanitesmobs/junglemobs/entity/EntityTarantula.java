@@ -172,8 +172,7 @@ public class EntityTarantula extends EntityCreatureTameable implements IMob {
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

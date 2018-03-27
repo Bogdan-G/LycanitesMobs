@@ -215,14 +215,7 @@ public class EntityWarg extends EntityCreatureRideable implements IGroupPredator
     //                   Mount Ability
     // ==================================================
     public void mountAbility(Entity rider) {
-    	if(this.worldObj.isRemote)
-    		return;
-
-        if(!this.onGround)
-            return;
-    	if(this.abilityToggled)
-    		return;
-    	if(this.getStamina() < this.getStaminaCost())
+    	if(this.worldObj.isRemote || !this.onGround || this.abilityToggled || this.getStamina() < this.getStaminaCost())
     		return;
     	
     	this.playJumpSound();
@@ -256,9 +249,7 @@ public class EntityWarg extends EntityCreatureRideable implements IGroupPredator
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
-        if(ObjectManager.getPotionEffect("Paralysis") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
+        if(potionEffect.getPotionID() == Potion.moveSlowdown.id || ObjectManager.getPotionEffect("Paralysis") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

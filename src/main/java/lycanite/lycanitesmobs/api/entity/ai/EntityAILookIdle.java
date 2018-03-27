@@ -56,7 +56,7 @@ public class EntityAILookIdle extends EntityAIBase {
    	//                     Start
    	// ==================================================
     public void startExecuting() {
-        double d0 = (Math.PI * 2D) * this.host.getRNG().nextDouble();
+        double d0 = (Math.PI * 2D) * this.host.getRNG().nextFloat();
         this.lookX = Math.cos(d0);
         this.lookZ = Math.sin(d0);
         this.idleTime = idleTimeMin + this.host.getRNG().nextInt(idleTimeRange);

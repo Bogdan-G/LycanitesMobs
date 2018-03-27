@@ -139,8 +139,7 @@ public class EntityClink extends EntityCreatureTameable implements IMob {
     
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.hunger.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.weakness.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.hunger.id || par1PotionEffect.getPotionID() == Potion.weakness.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

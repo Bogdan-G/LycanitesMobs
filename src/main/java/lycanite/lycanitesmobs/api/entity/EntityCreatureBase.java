@@ -463,7 +463,7 @@ public abstract class EntityCreatureBase extends EntityLiving implements FlyingM
         		return false;
         	}
         	else {
-	        	double spawnRoll = this.rand.nextDouble();
+	        	double spawnRoll = this.rand.nextFloat();
 		        LycanitesMobs.printDebug("MobSpawns", "Applying Forced Spawn Chance - Rolled: " + spawnRoll + " Must be less than: " + this.mobInfo.spawnInfo.spawnChance);
 	        	if(spawnRoll > this.mobInfo.spawnInfo.spawnChance)
 	        		return false;
@@ -740,7 +740,7 @@ public abstract class EntityCreatureBase extends EntityLiving implements FlyingM
             		Block spawnerBlock = world.getBlock(i, j, k);
             		if(spawnerBlock != null) {
 	            		TileEntity tileEntity = world.getTileEntity(i, j, k);
-	            		if(tileEntity != null && tileEntity instanceof TileEntityMobSpawner) {
+	            		if(tileEntity instanceof TileEntityMobSpawner) {
 	            			if(((TileEntityMobSpawner)tileEntity).func_145881_a().getEntityNameToSpawn().equals(ObjectManager.entityLists.get(this.group.filename).getEntityString(this))) //getSpawnerLogic()
 	            				return true;
 	            		}
@@ -867,7 +867,7 @@ public abstract class EntityCreatureBase extends EntityLiving implements FlyingM
     
     // ========== Get Random Size ==========
     public void getRandomSize() {
-    	this.sizeScale = 1.0D + (0.35D * (0.5D - this.getRNG().nextDouble()));
+    	this.sizeScale = 1.0D + (0.35D * (0.5D - this.getRNG().nextFloat()));
     	this.updateSize();
     }
 	

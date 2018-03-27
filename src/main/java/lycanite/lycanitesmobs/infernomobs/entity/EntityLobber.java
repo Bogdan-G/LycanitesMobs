@@ -186,12 +186,12 @@ public class EntityLobber extends EntityCreatureBase implements IMob, IGroupFire
         // Particles:
         if(this.worldObj.isRemote) {
 	        for(int i = 0; i < 2; ++i) {
-	            this.worldObj.spawnParticle("flame", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
-	            this.worldObj.spawnParticle("dripLava", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+	            this.worldObj.spawnParticle("flame", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
+	            this.worldObj.spawnParticle("dripLava", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
 	        }
 	        if(this.ticksExisted % 10 == 0)
 		        for(int i = 0; i < 2; ++i) {
-		            this.worldObj.spawnParticle("lava", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+		            this.worldObj.spawnParticle("lava", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
 		        }
         }
     }
@@ -213,9 +213,10 @@ public class EntityLobber extends EntityCreatureBase implements IMob, IGroupFire
 	public float getBlockPathWeight(int par1, int par2, int par3) {
 		int waterWeight = 10;
 		
-        if(this.worldObj.getBlock(par1, par2, par3) == Blocks.lava)
+        Block block = this.worldObj.getBlock(par1, par2, par3);
+        if(block == Blocks.lava)
         	return (super.getBlockPathWeight(par1, par2, par3) + 1) * (waterWeight + 1);
-		if(this.worldObj.getBlock(par1, par2, par3) == Blocks.flowing_lava)
+		if(block == Blocks.flowing_lava)
 			return (super.getBlockPathWeight(par1, par2, par3) + 1) * waterWeight;
         
         if(this.getAttackTarget() != null)
@@ -285,8 +286,7 @@ public class EntityLobber extends EntityCreatureBase implements IMob, IGroupFire
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(ObjectManager.getPotionEffect("Penetration") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Penetration").id) return false;
+        if(ObjectManager.getPotionEffect("Penetration") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Penetration").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

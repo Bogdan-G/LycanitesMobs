@@ -95,8 +95,7 @@ public class EntityEttin extends EntityCreatureAgeable implements IMob {
 	@Override
     public void onLivingUpdate() {
     	// Destroy Blocks:
-		if(!this.worldObj.isRemote)
-	        if(this.getAttackTarget() != null && this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") && this.ettinGreifing) {
+		if(!this.worldObj.isRemote && this.getAttackTarget() != null && this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") && this.ettinGreifing) {
 		    	float distance = this.getAttackTarget().getDistanceToEntity(this);
 		    		if(distance <= this.width + 4.0F)
 		    			this.destroyArea((int)this.posX, (int)this.posY, (int)this.posZ, 10, true);
@@ -124,8 +123,7 @@ public class EntityEttin extends EntityCreatureAgeable implements IMob {
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.blindness.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.blindness.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

@@ -41,7 +41,7 @@ public abstract class EntityCreatureAgeable extends EntityCreatureBase {
     
     // ========== Setup ==========
     public void setupMob() {
-        if(this.babySpawnChance > 0D && this.rand.nextDouble() < this.babySpawnChance)
+        if(this.babySpawnChance > 0D && this.rand.nextFloat() < this.babySpawnChance)
         	this.setGrowingAge(growthTime);
         super.setupMob();
     }

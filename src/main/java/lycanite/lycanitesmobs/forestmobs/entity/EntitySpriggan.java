@@ -125,7 +125,7 @@ public class EntitySpriggan extends EntityCreatureTameable implements IMob, IGro
 	        	for(int y = (int)this.posY - farmingHeight; y <= (int)this.posY + farmingHeight; y++) {
 	        		for(int z = (int)this.posZ - farmingRange; z <= (int)this.posZ + farmingRange; z++) {
 	        			Block farmingBlock = this.worldObj.getBlock(x, y, z);
-	        			if(farmingBlock != null && farmingBlock instanceof IPlantable && farmingBlock instanceof IGrowable && farmingBlock != Blocks.tallgrass && farmingBlock != Blocks.double_plant) {
+	        			if(farmingBlock instanceof IPlantable && farmingBlock instanceof IGrowable && farmingBlock != Blocks.tallgrass && farmingBlock != Blocks.double_plant) {
 	        				
 		        			// Boost Crops Every X Seconds:
 		        			if(!this.worldObj.isRemote && this.farmingTick % (currentFarmingRate) == 0) {
@@ -156,7 +156,7 @@ public class EntitySpriggan extends EntityCreatureTameable implements IMob, IGro
         // Particles:
         if(this.worldObj.isRemote)
             for(int i = 0; i < 2; ++i) {
-                this.worldObj.spawnParticle("blockcrack_18_0", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+                this.worldObj.spawnParticle("blockcrack_18_0", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
             }
     }
 
@@ -242,9 +242,7 @@ public class EntitySpriggan extends EntityCreatureTameable implements IMob, IGro
     // ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
-        if(ObjectManager.getPotionEffect("Paralysis") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
+        if(potionEffect.getPotionID() == Potion.moveSlowdown.id || ObjectManager.getPotionEffect("Paralysis") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

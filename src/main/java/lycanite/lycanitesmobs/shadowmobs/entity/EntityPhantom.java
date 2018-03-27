@@ -103,7 +103,7 @@ public class EntityPhantom extends EntityCreatureTameable implements IMob, IGrou
         // Particles:
         if(this.worldObj.isRemote)
 	        for(int i = 0; i < 2; ++i) {
-	            this.worldObj.spawnParticle("witchMagic", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+	            this.worldObj.spawnParticle("witchMagic", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
 	        }
     }
     
@@ -171,9 +171,7 @@ public class EntityPhantom extends EntityCreatureTameable implements IMob, IGrou
     
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.blindness.id) return false;
-        if(ObjectManager.getPotionEffect("Fear") != null)
-        	if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Fear").id) return false;
+        if(potionEffect.getPotionID() == Potion.blindness.id || ObjectManager.getPotionEffect("Fear") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Fear").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }
@@ -189,13 +187,10 @@ public class EntityPhantom extends EntityCreatureTameable implements IMob, IGrou
     /** Returns the sound to play when this creature is making a random ambient roar, grunt, etc. **/
     @Override
     protected String getLivingSound() {
-    	if(this.hasAttackTarget()) {
-    		if(this.getAttackTarget() instanceof EntityPlayer)
-    			if("Jbams".equals(((EntityPlayer)this.getAttackTarget()).getCommandSenderName())) // JonBams special sound!
+    	if(this.hasAttackTarget() && this.getAttackTarget() instanceof EntityPlayer && "Jbams".equals(((EntityPlayer)this.getAttackTarget()).getCommandSenderName())) {// JonBams special sound!
     				return AssetManager.getSound(this.mobInfo.name + "_say_jon");
     	}
-        if(this.isTamed() && this.getOwner() != null) {
-            if("JBams".equals(this.getOwnerName()))
+        if(this.isTamed() && this.getOwner() != null && "JBams".equals(this.getOwnerName())) {
                 return AssetManager.getSound(this.mobInfo.name + "_say_jon");
         }
     	return super.getLivingSound();

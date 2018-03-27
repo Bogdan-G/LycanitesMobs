@@ -144,9 +144,7 @@ public class EntityGeist extends EntityCreatureAgeable implements IMob, IGroupSh
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.blindness.id) return false;
-        if(ObjectManager.getPotionEffect("Fear") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Fear").id) return false;
+        if(potionEffect.getPotionID() == Potion.blindness.id || ObjectManager.getPotionEffect("Fear") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Fear").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

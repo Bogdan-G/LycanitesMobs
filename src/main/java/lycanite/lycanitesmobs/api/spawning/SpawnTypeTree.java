@@ -86,7 +86,7 @@ public class SpawnTypeTree extends SpawnTypeBlockBreak {
     // ==================================================
     @Override
     public boolean canSpawn(long tick, World world, int x, int y, int z, boolean rare) {
-    	double roll = world.rand.nextDouble();
+    	double roll = world.rand.nextFloat();
     	ExtendedWorld worldExt = ExtendedWorld.getForWorld(world);
     	if(worldExt != null) {
     		if("rootriot".equalsIgnoreCase(worldExt.getWorldEventType()))

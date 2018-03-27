@@ -305,7 +305,7 @@ public class EntityProjectileLaser extends EntityProjectileBase {
 	        world.spawnEntityInWorld(laserEnd);
 		}
 		catch (Exception e) {
-			System.out.println("[WARNING] [LycanitesMobs] EntityLaser was unable to instantiate the EntityLaserEnd.");
+			cpw.mods.fml.common.FMLLog.info("[WARNING] [LycanitesMobs] EntityLaser was unable to instantiate the EntityLaserEnd.");
 			e.printStackTrace();
 		}
     }
@@ -403,7 +403,7 @@ public class EntityProjectileLaser extends EntityProjectileBase {
         // Prevent Knockback:
         double targetKnockbackResistance = 0;
         if(this.knockbackChance < 1) {
-            if(this.knockbackChance <= 0 || this.rand.nextDouble() <= this.knockbackChance) {
+            if(this.knockbackChance <= 0 || this.rand.nextFloat() <= this.knockbackChance) {
                 if(target instanceof EntityLivingBase) {
                     targetKnockbackResistance = ((EntityLivingBase)target).getEntityAttribute(SharedMonsterAttributes.knockbackResistance).getAttributeValue();
                     ((EntityLivingBase)target).getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1);
@@ -441,7 +441,7 @@ public class EntityProjectileLaser extends EntityProjectileBase {
     	
         // Restore Knockback:
         if(this.knockbackChance < 1) {
-            if(this.knockbackChance <= 0 || this.rand.nextDouble() <= this.knockbackChance) {
+            if(this.knockbackChance <= 0 || this.rand.nextFloat() <= this.knockbackChance) {
                 if(target instanceof EntityLivingBase)
                     ((EntityLivingBase)target).getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(targetKnockbackResistance);
             }

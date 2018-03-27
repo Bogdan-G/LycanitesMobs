@@ -34,7 +34,7 @@ public class RenderParticle extends Render {
     // ==================================================
     @Override
     public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
-    	System.out.println("Rendering particle!");
+    	cpw.mods.fml.common.FMLLog.info("Rendering particle!");
     	if(this.renderTime++ > Integer.MAX_VALUE - 1) this.renderTime = 0;
     	this.renderParticle(entity, par2, par4, par6, par8, par9);
     }
@@ -88,7 +88,7 @@ public class RenderParticle extends Render {
         float f8 = 0.5F;
         GL11.glRotatef(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-        GL11.glTranslated(-scale / 2, -scale / 2, -scale / 2);
+        GL11.glTranslatef(-scale / 2f, -scale / 2f, -scale / 2f);
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, 1.0F, 0.0F);
         tessellator.addVertexWithUV((double)(0.0F - f7), (double)(0.0F - f8), 0.0D, (double)uMin, (double)vMax);

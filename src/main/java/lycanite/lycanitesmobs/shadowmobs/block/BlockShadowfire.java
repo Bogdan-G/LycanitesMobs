@@ -50,7 +50,7 @@ public class BlockShadowfire extends BlockBase {
 		this.setup();
 		
 		// Stats:
-		this.tickRate = ConfigBase.getConfig(this.group, "general").getBool("Features", "Enable Shadowfire", true) ? 200 : 1;
+		this.tickRate = ConfigBase.getConfig(this.group, "general").getBool("Features", "Enable Shadowfire", true) ? 200 : 20;
 		this.removeOnTick = false;
 		this.loopTicks = true;
 		this.canBeCrushed = true;

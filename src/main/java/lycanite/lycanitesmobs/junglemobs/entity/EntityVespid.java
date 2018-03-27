@@ -146,7 +146,7 @@ public class EntityVespid extends EntityCreatureAgeable implements IMob, IGroupP
         	
         	// Build Hive Foundations:
         	if(!queen.hiveFoundationsSet()) {
-        		List<Byte> directions = new ArrayList<Byte>();
+        		org.eclipse.collections.impl.list.mutable.primitive.ByteArrayList directions = new org.eclipse.collections.impl.list.mutable.primitive.ByteArrayList();
         		if(!queen.doesHiveHaveXPositive()) {
         			directions.add((byte)0);
         		}
@@ -352,8 +352,7 @@ public class EntityVespid extends EntityCreatureAgeable implements IMob, IGroupP
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

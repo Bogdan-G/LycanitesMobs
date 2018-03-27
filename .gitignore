@@ -30,8 +30,6 @@ remotebuild.py
 /Server/
 /classes/
 ## misc
-/libs/Thaumcraft-deobf*.jar*
-/libs/*
 TCDEOBF*
 ## Ignore OS cache files
 *.DS_Store

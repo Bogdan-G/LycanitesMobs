@@ -28,6 +28,6 @@ public class DispenserBehaviorBlizzard extends DispenserBehaviorBase {
 	// ==================================================
 	@Override
     protected void playDispenseSound(IBlockSource par1IBlockSource) {
-        par1IBlockSource.getWorld().playSoundEffect(par1IBlockSource.getX(), par1IBlockSource.getY(), par1IBlockSource.getZ(), AssetManager.getSound("blizzard"), 1.0F, 1.0F / (new Random().nextFloat() * 0.4F + 0.8F));
+        par1IBlockSource.getWorld().playSoundEffect(par1IBlockSource.getX(), par1IBlockSource.getY(), par1IBlockSource.getZ(), AssetManager.getSound("blizzard"), 1.0F, 1.0F / (new org.bogdang.modifications.random.XSTR().nextFloat() * 0.4F + 0.8F));
     }
 }

@@ -28,7 +28,7 @@ public class SpawnTypeStorm extends SpawnTypeSky {
     	double chance = this.chance;
     	if(world.isThundering())
     		chance = Math.min(chance * 2, 1.0D);
-        if(world.rand.nextDouble() >= chance)
+        if(world.rand.nextFloat() >= chance)
             return false;
         return true;
     }

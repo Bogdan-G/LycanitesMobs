@@ -581,7 +581,7 @@ public class SpawnTypeBase {
     public boolean canSpawn(long tick, World world, int x, int y, int z, boolean rare) {
         if(this.getRate(world) == 0 || tick % this.getRate(world) != 0)
             return false;
-        if(world.rand.nextDouble() >= this.chance)
+        if(world.rand.nextFloat() >= this.chance)
             return false;
         return true;
     }

@@ -150,7 +150,7 @@ public class EntityGeonach extends EntityCreatureTameable implements IMob, IGrou
         // Particles:
         if(this.worldObj.isRemote)
 	        for(int i = 0; i < 2; ++i) {
-	            this.worldObj.spawnParticle("blockcrack_1_0", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+	            this.worldObj.spawnParticle("blockcrack_1_0", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
 	        }
     }
 
@@ -257,9 +257,7 @@ public class EntityGeonach extends EntityCreatureTameable implements IMob, IGrou
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
-        if(ObjectManager.getPotionEffect("Weight") != null)
-        	if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
+        if(potionEffect.getPotionID() == Potion.digSlowdown.id || ObjectManager.getPotionEffect("Weight") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

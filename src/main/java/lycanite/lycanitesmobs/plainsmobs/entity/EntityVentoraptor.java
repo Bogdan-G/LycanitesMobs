@@ -152,12 +152,7 @@ public class EntityVentoraptor extends EntityCreatureRideable implements IGroupP
     //                   Mount Ability
     // ==================================================
     public void mountAbility(Entity rider) {
-    	if(this.worldObj.isRemote)
-    		return;
-    	
-    	if(this.abilityToggled)
-    		return;
-    	if(this.getStamina() < this.getStaminaCost())
+    	if(this.worldObj.isRemote || this.abilityToggled || this.getStamina() < this.getStaminaCost())
     		return;
     	
     	this.playJumpSound();
@@ -191,8 +186,7 @@ public class EntityVentoraptor extends EntityCreatureRideable implements IGroupP
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.weakness.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.digSlowdown.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.weakness.id || par1PotionEffect.getPotionID() == Potion.digSlowdown.id) return false;
         return super.isPotionApplicable(par1PotionEffect);
     }
     

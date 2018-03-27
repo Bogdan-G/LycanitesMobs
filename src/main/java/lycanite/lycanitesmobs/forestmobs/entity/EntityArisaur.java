@@ -119,11 +119,12 @@ public class EntityArisaur extends EntityCreatureAgeable implements IAnimals, IG
 	// ========== Pathing Weight ==========
 	@Override
 	public float getBlockPathWeight(int par1, int par2, int par3) {
-		if(this.worldObj.getBlock(par1, par2 - 1, par3) != Blocks.air) {
-			Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
-			if(block.getMaterial() == Material.grass)
+		Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		if(block != Blocks.air) {
+			Material mblock = block.getMaterial();
+			if(mblock == Material.grass)
 				return 10F;
-			if(block.getMaterial() == Material.ground)
+			if(mblock == Material.ground)
 				return 7F;
 		}
         return super.getBlockPathWeight(par1, par2, par3);
@@ -169,9 +170,7 @@ public class EntityArisaur extends EntityCreatureAgeable implements IAnimals, IG
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
-        if(ObjectManager.getPotionEffect("Paralysis") != null)
-        	if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
+        if(potionEffect.getPotionID() == Potion.moveSlowdown.id || ObjectManager.getPotionEffect("Paralysis") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

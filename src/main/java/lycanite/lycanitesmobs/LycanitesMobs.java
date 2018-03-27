@@ -377,19 +377,19 @@ public class LycanitesMobs {
 	// ==================================================
     public static void printInfo(String key, String message) {
         if("".equals(key) || config.getBool("Debug", key, false)) {
-            System.out.println("[LycanitesMobs] [Info] " + message);
+            cpw.mods.fml.common.FMLLog.info("[LycanitesMobs] [Info] " + message);
         }
     }
 
     public static void printDebug(String key, String message) {
         if("".equals(key) || config.getBool("Debug", key, false)) {
-            System.out.println("[LycanitesMobs] [Debug] " + message);
+            cpw.mods.fml.common.FMLLog.info("[LycanitesMobs] [Debug] " + message);
         }
     }
 
     public static void printWarning(String key, String message) {
 		if("".equals(key) || config.getBool("Debug", key, false)) {
-			System.err.println("[LycanitesMobs] [WARNING] " + message);
+			cpw.mods.fml.common.FMLLog.warning("[LycanitesMobs] [WARNING] " + message);
 		}
 	}
 }

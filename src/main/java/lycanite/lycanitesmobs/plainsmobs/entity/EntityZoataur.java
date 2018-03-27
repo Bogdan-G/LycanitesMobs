@@ -123,7 +123,7 @@ public class EntityZoataur extends EntityCreatureTameable implements IGroupPreda
     /** Called when this mob has received damage. Here a random blocking chance is applied. **/
     @Override
     public void onDamage(DamageSource damageSrc, float damage) {
-    	if(this.getRNG().nextDouble() > 0.75D && this.getHealth() / this.getMaxHealth() > 0.25F)
+    	if(this.getRNG().nextFloat() > 0.75D && this.getHealth() / this.getMaxHealth() > 0.25F)
     		this.setBlocking();
         super.onDamage(damageSrc, damage);
     }
@@ -146,8 +146,7 @@ public class EntityZoataur extends EntityCreatureTameable implements IGroupPreda
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.weakness.id) return false;
-        if(potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
+        if(potionEffect.getPotionID() == Potion.weakness.id || potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
         return super.isPotionApplicable(potionEffect);
     }
     

@@ -97,7 +97,7 @@ public class FlightNavigator {
     private double randomStrafeAngle = 0;
 	public void updateFlight() {
 		if(this.targetPosition == null) return;
-        if(this.randomStrafeAngle <= 0 && this.host.getRNG().nextDouble() <= 0.25D)
+        if(this.randomStrafeAngle <= 0 && this.host.getRNG().nextFloat() <= 0.25D)
             this.randomStrafeAngle = this.host.getRNG().nextBoolean() ? 90D : -90D;
         if(this.randomStrafeAngle > 0)
             this.randomStrafeAngle -= 0.5D;

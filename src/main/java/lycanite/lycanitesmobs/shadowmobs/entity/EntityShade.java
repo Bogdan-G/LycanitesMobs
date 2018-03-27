@@ -104,12 +104,7 @@ public class EntityShade extends EntityCreatureRideable implements IGroupPredato
     // ==================================================
     @Override
     public void mountAbility(Entity rider) {
-        if(this.worldObj.isRemote)
-            return;
-
-        if(this.abilityToggled)
-            return;
-        if(this.getStamina() < this.getStaminaCost())
+        if(this.worldObj.isRemote || this.abilityToggled || this.getStamina() < this.getStaminaCost())
             return;
 
         this.specialAttack();
@@ -219,9 +214,7 @@ public class EntityShade extends EntityCreatureRideable implements IGroupPredato
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.blindness.id) return false;
-        if(ObjectManager.getPotionEffect("Fear") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Fear").id) return false;
+        if(potionEffect.getPotionID() == Potion.blindness.id || ObjectManager.getPotionEffect("Fear") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Fear").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

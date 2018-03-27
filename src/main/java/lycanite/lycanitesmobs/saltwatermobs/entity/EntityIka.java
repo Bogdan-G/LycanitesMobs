@@ -21,6 +21,7 @@ import lycanite.lycanitesmobs.api.entity.ai.EntityAIWander;
 import lycanite.lycanitesmobs.api.entity.ai.EntityAIWatchClosest;
 import lycanite.lycanitesmobs.api.info.DropRate;
 import lycanite.lycanitesmobs.api.info.ObjectLists;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
@@ -135,9 +136,10 @@ public class EntityIka extends EntityCreatureAgeable implements IAnimals, IGroup
 	public float getBlockPathWeight(int par1, int par2, int par3) {
 		int waterWeight = 10;
 		
-        if(this.worldObj.getBlock(par1, par2, par3) == Blocks.water)
+        Block block = this.worldObj.getBlock(par1, par2, par3);
+        if(block == Blocks.water)
         	return (super.getBlockPathWeight(par1, par2, par3) + 1) * (waterWeight + 1);
-		if(this.worldObj.getBlock(par1, par2, par3) == Blocks.flowing_water)
+		if(block == Blocks.flowing_water)
 			return (super.getBlockPathWeight(par1, par2, par3) + 1) * waterWeight;
         if(this.worldObj.isRaining() && this.worldObj.canBlockSeeTheSky(par1, par2, par3))
         	return (super.getBlockPathWeight(par1, par2, par3) + 1) * (waterWeight + 1);
@@ -180,9 +182,7 @@ public class EntityIka extends EntityCreatureAgeable implements IAnimals, IGroup
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-    	if(ObjectManager.getPotionEffect("Weight") != null)
-        	if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
-        if(potionEffect.getPotionID() == Potion.blindness.id) return false;
+    	if(ObjectManager.getPotionEffect("Weight") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id || potionEffect.getPotionID() == Potion.blindness.id) return false;
         return super.isPotionApplicable(potionEffect);
     }
     

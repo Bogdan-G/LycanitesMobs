@@ -202,9 +202,7 @@ public class EntityRaiko extends EntityCreatureBase implements IMob, IGroupHunte
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-    	if(ObjectManager.getPotionEffect("Weight") != null)
-        	if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
-        if(potionEffect.getPotionID() == Potion.blindness.id) return false;
+    	if(ObjectManager.getPotionEffect("Weight") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id || potionEffect.getPotionID() == Potion.blindness.id) return false;
         return super.isPotionApplicable(potionEffect);
     }
 

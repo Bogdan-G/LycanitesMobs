@@ -30,11 +30,11 @@ public class ModelCustomObj extends ModelBase {
     /** A list of all parts that belong to this model. **/
 	public ArrayList<GroupObject> parts;
     /** A map containing the XYZ offset for each part to use when centering. **/
-	public Map<String, float[]> partCenters = new HashMap<String, float[]>();
+	public Map<String, float[]> partCenters = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, float[]>();
     /** A map containing the XYZ sub-offset for each part to use when centering. These are for parts with two centers such as mouth parts that match their centers to the head part but have a subcenter for opening and closing. **/
-	public Map<String, float[]> partSubCenters = new HashMap<String, float[]>();
+	public Map<String, float[]> partSubCenters = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, float[]>();
     /** A map to be used on the fly, this allows one part to apply a position offset to another part. This is no longer used though and will be made redundant when the new model code is created. **/
-	public Map<String, float[]> offsets = new HashMap<String, float[]>();
+	public Map<String, float[]> offsets = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, float[]>();
 
     // Head:
     /** If true, head pieces will ignore the x look rotation when animating. **/

@@ -220,11 +220,12 @@ public class EntityYale extends EntityCreatureAgeable implements IAnimals, IGrou
 	// ========== Pathing Weight ==========
 	@Override
 	public float getBlockPathWeight(int par1, int par2, int par3) {
-		if(this.worldObj.getBlock(par1, par2 - 1, par3) != Blocks.air) {
-			Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
-			if(block.getMaterial() == Material.grass)
+		Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		if(block != Blocks.air) {
+			Material mblock = block.getMaterial() ;
+			if(mblock == Material.grass)
 				return 10F;
-			if(block.getMaterial() == Material.ground)
+			if(mblock == Material.ground)
 				return 7F;
 		}
         return super.getBlockPathWeight(par1, par2, par3);
@@ -242,9 +243,7 @@ public class EntityYale extends EntityCreatureAgeable implements IAnimals, IGrou
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
-        if(ObjectManager.getPotionEffect("Weight") != null)
-        	if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
+        if(potionEffect.getPotionID() == Potion.digSlowdown.id || ObjectManager.getPotionEffect("Weight") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
         return super.isPotionApplicable(potionEffect);
     }
     

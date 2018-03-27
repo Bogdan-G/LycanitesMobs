@@ -229,8 +229,7 @@ public class EntityEyewig extends EntityCreatureRideable {
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.blindness.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.blindness.id) return false;
         return super.isPotionApplicable(par1PotionEffect);
     }
     

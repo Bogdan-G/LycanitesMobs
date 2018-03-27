@@ -191,8 +191,7 @@ public class EntityUvaraptor extends EntityCreatureRideable implements IGroupPre
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
         return super.isPotionApplicable(par1PotionEffect);
     }
     
@@ -223,9 +222,7 @@ public class EntityUvaraptor extends EntityCreatureRideable implements IGroupPre
     // ==================================================
     @Override
     public boolean isTamingItem(ItemStack itemStack) {
-    	if(itemStack == null)
-    		return false;
-    	return itemStack.getItem() == ObjectManager.getItem("uvaraptortreat");
+    	return itemStack != null && itemStack.getItem() == ObjectManager.getItem("uvaraptortreat");
     }
     
     

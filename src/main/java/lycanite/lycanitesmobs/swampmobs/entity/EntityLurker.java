@@ -225,8 +225,7 @@ public class EntityLurker extends EntityCreatureTameable implements IGroupHunter
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.blindness.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.blindness.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

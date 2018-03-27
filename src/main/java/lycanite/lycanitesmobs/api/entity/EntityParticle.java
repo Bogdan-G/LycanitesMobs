@@ -44,7 +44,7 @@ public class EntityParticle extends EntityThrowable {
     // ==================================================
 	@Override
     public void onUpdate() {
-		System.out.println("Doing something!");
+		cpw.mods.fml.common.FMLLog.info("Doing something!");
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;

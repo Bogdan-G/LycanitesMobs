@@ -119,10 +119,7 @@ public class EntityHellfireWave extends EntityProjectileBase {
     //========== Do Damage Check ==========
     public boolean canDamage(EntityLivingBase targetEntity) {
         EntityLivingBase owner = this.getThrower();
-        if(owner == null) {
-            if(targetEntity instanceof EntityRahovart)
-                return false;
-            if(targetEntity instanceof IGroupDemon)
+        if(owner == null && (targetEntity instanceof EntityRahovart || targetEntity instanceof IGroupDemon)) {
                 return false;
         }
         return super.canDamage(targetEntity);

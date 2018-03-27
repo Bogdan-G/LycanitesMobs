@@ -89,11 +89,8 @@ public class EntityJabberwock extends EntityCreatureTameable implements IMob {
         super.onLivingUpdate();
         
         // Random Lunging:
-        if(this.onGround && !this.worldObj.isRemote) {
-        	if(this.hasAttackTarget()) {
-        		if(this.rand.nextInt(10) == 0)
+        if(this.onGround && !this.worldObj.isRemote && this.hasAttackTarget() && this.rand.nextInt(10) == 0) {
         			this.leap(6.0F, 0.1D, this.getAttackTarget());
-        	}
         }
     }
     
@@ -121,9 +118,7 @@ public class EntityJabberwock extends EntityCreatureTameable implements IMob {
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.digSlowdown.id) return false;
-        if(ObjectManager.getPotionEffect("Weight") != null)
-        	if(par1PotionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.digSlowdown.id || ObjectManager.getPotionEffect("Weight") != null && par1PotionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

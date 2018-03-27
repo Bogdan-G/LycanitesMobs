@@ -183,8 +183,7 @@ public class EntityRoc extends EntityCreatureBase implements IMob, IGroupHunter 
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.weakness.id) return false;
-        if(potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
+        if(potionEffect.getPotionID() == Potion.weakness.id || potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
         return super.isPotionApplicable(potionEffect);
     }
 

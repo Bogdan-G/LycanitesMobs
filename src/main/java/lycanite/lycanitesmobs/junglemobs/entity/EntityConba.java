@@ -170,7 +170,7 @@ public class EntityConba extends EntityCreatureTameable implements IMob {
         	this.vespidInfection = this.extraAnimation01();
         	if(this.vespidInfection) {
     	        for(int i = 0; i < 2; ++i) {
-    	            this.worldObj.spawnParticle("witchMagic", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+    	            this.worldObj.spawnParticle("witchMagic", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
     	        }
         	}
         }
@@ -286,9 +286,7 @@ public class EntityConba extends EntityCreatureTameable implements IMob {
     // ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.confusion.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.moveSlowdown.id || par1PotionEffect.getPotionID() == Potion.confusion.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

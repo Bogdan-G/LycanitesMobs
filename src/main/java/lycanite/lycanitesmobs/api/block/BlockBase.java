@@ -30,7 +30,7 @@ public class BlockBase extends Block {
 	
 	// Stats:
 	/** If set to a value above 0, the block will update on the specified number of ticks. **/
-	public int tickRate = 0;
+	public int tickRate = 20;
 	/** If true, this block will be set to air on it's first tick, useful for blocks that despawn over time like fire. **/
 	public boolean removeOnTick = false;
 	/** If true after performing a tick update another tick update will be scheduled thus creating a loop. **/

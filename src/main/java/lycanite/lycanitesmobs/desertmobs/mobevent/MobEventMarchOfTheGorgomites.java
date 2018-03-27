@@ -35,8 +35,8 @@ public class MobEventMarchOfTheGorgomites extends MobEventBase {
 	public void onSpawn(EntityLiving entity) {
 		super.onSpawn(entity);
 
-        if(entity instanceof EntityCreatureBase && entity.getRNG().nextDouble() >= 0.85D) {
-        	((EntityCreatureBase)entity).setSizeScale(3.0D + (0.35D * (0.5D - entity.getRNG().nextDouble())));
+        if(entity instanceof EntityCreatureBase && entity.getRNG().nextFloat() >= 0.85D) {
+        	((EntityCreatureBase)entity).setSizeScale(3.0D + (0.35D * (0.5D - entity.getRNG().nextFloat())));
         }
 	}
 }

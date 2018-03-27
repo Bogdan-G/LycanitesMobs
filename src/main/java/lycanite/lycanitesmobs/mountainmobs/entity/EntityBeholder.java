@@ -187,9 +187,7 @@ public class EntityBeholder extends EntityCreatureTameable {
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
-        if(ObjectManager.getPotionEffect("Weight") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
+        if(potionEffect.getPotionID() == Potion.digSlowdown.id || ObjectManager.getPotionEffect("Weight") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

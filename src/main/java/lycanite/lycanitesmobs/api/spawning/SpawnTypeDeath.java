@@ -37,7 +37,7 @@ public class SpawnTypeDeath extends SpawnTypeBase {
     public boolean canSpawn(long tick, World world, int x, int y, int z, boolean rare) {
         if(world.provider.dimensionId == 0 && world.isDaytime())
             return false;
-    	double roll = world.rand.nextDouble();
+    	double roll = world.rand.nextFloat();
     	ExtendedWorld worldExt = ExtendedWorld.getForWorld(world);
     	if(worldExt != null) {
     		if("shadowgames".equalsIgnoreCase(worldExt.getWorldEventType()))

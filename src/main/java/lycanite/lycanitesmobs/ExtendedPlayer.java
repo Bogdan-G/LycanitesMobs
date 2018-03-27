@@ -50,7 +50,7 @@ public class ExtendedPlayer implements IExtendedEntityProperties {
 	public int summonFocusCharge = 600;
 	public int summonFocusMax = (this.summonFocusCharge * 10);
 	public int summonFocus = this.summonFocusMax;
-	public Map<Integer, SummonSet> summonSets = new HashMap<Integer, SummonSet>();
+	public org.eclipse.collections.impl.map.mutable.primitive.IntObjectHashMap<SummonSet> summonSets = new org.eclipse.collections.impl.map.mutable.primitive.IntObjectHashMap<SummonSet>();
 	public int selectedSummonSet = 1;
 	public int summonSetMax = 5;
 

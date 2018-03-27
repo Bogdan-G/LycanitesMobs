@@ -104,11 +104,12 @@ public class EntityMakaAlpha extends EntityCreatureAgeable implements IAnimals, 
 	// ========== Pathing Weight ==========
 	@Override
 	public float getBlockPathWeight(int par1, int par2, int par3) {
-		if(this.worldObj.getBlock(par1, par2 - 1, par3) != Blocks.air) {
-			Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
-			if(block.getMaterial() == Material.grass)
+		Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		if(block != Blocks.air) {
+			Material mblock = block.getMaterial();
+			if(mblock == Material.grass)
 				return 10F;
-			if(block.getMaterial() == Material.ground)
+			if(mblock == Material.ground)
 				return 7F;
 		}
         return super.getBlockPathWeight(par1, par2, par3);
@@ -156,8 +157,7 @@ public class EntityMakaAlpha extends EntityCreatureAgeable implements IAnimals, 
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.weakness.id) return false;
-        if(potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
+        if(potionEffect.getPotionID() == Potion.weakness.id || potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

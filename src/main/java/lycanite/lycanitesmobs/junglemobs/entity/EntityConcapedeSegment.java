@@ -151,14 +151,12 @@ public class EntityConcapedeSegment extends EntityCreatureAgeable implements IAn
         // Concapede Connections:
         if(!this.worldObj.isRemote) {
         	// Check if back segment is alive:
-        	if(this.hasMaster()) {
-        		if(!this.getMasterTarget().isEntityAlive())
+        	if(this.hasMaster() && !this.getMasterTarget().isEntityAlive()) {
         			this.setMasterTarget(null);
         	}
 
         	// Check if front segment is alive:
-        	if(this.hasParent()) {
-        		if(!this.getParentTarget().isEntityAlive())
+        	if(this.hasParent() && !this.getParentTarget().isEntityAlive()) {
         			this.setParentTarget(null);
         	}
 
@@ -226,8 +224,8 @@ public class EntityConcapedeSegment extends EntityCreatureAgeable implements IAn
 	// ========== Pathing Weight ==========
 	@Override
 	public float getBlockPathWeight(int par1, int par2, int par3) {
-		if(this.worldObj.getBlock(par1, par2 - 1, par3) != Blocks.air) {
-			Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		if(block != Blocks.air) {
 			if(block.getMaterial() == Material.grass)
 				return 10F;
 			if(block.getMaterial() == Material.ground)
@@ -245,9 +243,7 @@ public class EntityConcapedeSegment extends EntityCreatureAgeable implements IAn
     // ========== Falling Speed Modifier ==========
     @Override
     public double getFallingMod() {
-    	if(this.worldObj.isRemote)
-    		return 0.0D;
-    	if(this.hasParent() && this.getParentTarget().posY > this.posY)
+    	if(this.worldObj.isRemote || (this.hasParent() && this.getParentTarget().posY > this.posY))
     		return 0.0D;
     	return super.getFallingMod();
     }
@@ -293,8 +289,7 @@ public class EntityConcapedeSegment extends EntityCreatureAgeable implements IAn
     
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.poison.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.poison.id || par1PotionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

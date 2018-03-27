@@ -76,7 +76,7 @@ public class BlockSummoningPedestal extends BlockBase implements ITileEntityProv
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if(tileEntity != null && tileEntity instanceof TileEntityBase)
+        if(tileEntity instanceof TileEntityBase)
             ((TileEntityBase)tileEntity).onRemove();
         super.breakBlock(world, x, y, z, block, metadata);
         world.removeTileEntity(x, y, z);
@@ -150,7 +150,7 @@ public class BlockSummoningPedestal extends BlockBase implements ITileEntityProv
     public IIcon getIcon(IBlockAccess blockAccess, int x, int y, int z, int side) {
         String textureName = this.blockName;
         TileEntity tileEntity = blockAccess.getTileEntity(x, y, z);
-        if(tileEntity != null && tileEntity instanceof TileEntitySummoningPedestal) {
+        if(tileEntity instanceof TileEntitySummoningPedestal) {
             TileEntitySummoningPedestal tileEntitySummoningPedestal = (TileEntitySummoningPedestal)tileEntity;
             if(tileEntitySummoningPedestal.getOwnerUUID() != null) {
                 if(tileEntitySummoningPedestal.getOwnerUUID().equals(LycanitesMobs.proxy.getClientPlayer().getUniqueID()))

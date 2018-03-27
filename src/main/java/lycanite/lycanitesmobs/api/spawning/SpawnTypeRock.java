@@ -77,7 +77,7 @@ public class SpawnTypeRock extends SpawnTypeBlockBreak {
     // ==================================================
     @Override
     public boolean canSpawn(long tick, World world, int x, int y, int z, boolean rare) {
-    	double roll = world.rand.nextDouble();
+    	double roll = world.rand.nextFloat();
         if(rare)
             roll /= 4;
     	ExtendedWorld worldExt = ExtendedWorld.getForWorld(world);

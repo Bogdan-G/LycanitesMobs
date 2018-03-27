@@ -15,9 +15,7 @@ public class RenderItemMobToken implements IItemRenderer {
 
     @Override
     public boolean handleRenderType(ItemStack itemStack, ItemRenderType type) {
-        if(itemStack.getTagCompound() == null)
-            return false;
-        if(!itemStack.getTagCompound().hasKey("Mob"))
+        if(itemStack.getTagCompound() == null || !itemStack.getTagCompound().hasKey("Mob"))
             return false;
         MobInfo mobInfo = ObjectManager.getMobInfo(itemStack.getTagCompound().getString("Mob"));
         if(mobInfo == null)
@@ -32,9 +30,7 @@ public class RenderItemMobToken implements IItemRenderer {
 
     @Override
     public void renderItem(ItemRenderType type, ItemStack itemStack, Object... data) {
-        if(itemStack.getTagCompound() == null)
-            return;
-        if(!itemStack.getTagCompound().hasKey("Mob"))
+        if(itemStack.getTagCompound() == null || !itemStack.getTagCompound().hasKey("Mob"))
             return;
         MobInfo mobInfo = ObjectManager.getMobInfo(itemStack.getTagCompound().getString("Mob"));
         if(mobInfo == null)

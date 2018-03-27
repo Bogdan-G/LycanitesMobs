@@ -26,8 +26,8 @@ public class InventoryCreature implements IInventory {
     protected boolean basicArmor = true;
     
     // Data Watching:
-    public Map<String, Integer> equipmentIDs = new HashMap<String, Integer>();
-    public Map<Integer, String> equipmentTypes = new HashMap<Integer, String>();
+    public org.eclipse.collections.impl.map.mutable.primitive.ObjectIntHashMap<String> equipmentIDs = new org.eclipse.collections.impl.map.mutable.primitive.ObjectIntHashMap<String>();
+    public org.eclipse.collections.impl.map.mutable.primitive.IntObjectHashMap<String> equipmentTypes = new org.eclipse.collections.impl.map.mutable.primitive.IntObjectHashMap<String>();
     private int nextID = 0;
     
     // Basic Armor Values: (Copied values from EntityHorse)

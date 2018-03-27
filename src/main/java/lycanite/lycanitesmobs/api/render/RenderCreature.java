@@ -275,7 +275,7 @@ public class RenderCreature extends RenderLiving {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         
         Vec3 pos = Minecraft.getMinecraft().thePlayer.getPosition(partialTick);
-        GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);  
+        GL11.glTranslatef(-(float)pos.xCoord, -(float)pos.yCoord, -(float)pos.zCoord);  
         
         double x = entity.posX;
         double y = entity.posY;
@@ -476,8 +476,8 @@ public class RenderCreature extends RenderLiving {
 //		float ox = (posFrom.zCoord - posTo.zCoord == 0?0:1f/16f);
 		GL11.glBegin(GL11.GL_LINE_STRIP);
 
-		GL11.glVertex3d(posFrom.xCoord, posFrom.yCoord + 0.5f, posFrom.zCoord);
-		GL11.glVertex3d(posTo.xCoord, posTo.yCoord + 0.5f, posTo.zCoord);
+		GL11.glVertex3f((float)posFrom.xCoord, (float)posFrom.yCoord + 0.5f, (float)posFrom.zCoord);
+		GL11.glVertex3f((float)posTo.xCoord, (float)posTo.yCoord + 0.5f, (float)posTo.zCoord);
 		
 		GL11.glEnd();
 	}

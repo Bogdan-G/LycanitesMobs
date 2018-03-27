@@ -171,8 +171,7 @@ public class EntityKhalk extends EntityCreatureTameable implements IMob, IGroupF
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(ObjectManager.getPotionEffect("Penetration") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Penetration").id) return false;
+        if(ObjectManager.getPotionEffect("Penetration") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Penetration").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

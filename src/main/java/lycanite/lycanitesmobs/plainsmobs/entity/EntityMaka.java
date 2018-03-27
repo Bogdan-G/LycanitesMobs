@@ -104,11 +104,12 @@ public class EntityMaka extends EntityCreatureAgeable implements IAnimals, IGrou
 	// ========== Pathing Weight ==========
 	@Override
 	public float getBlockPathWeight(int par1, int par2, int par3) {
+		Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
 		if(this.worldObj.getBlock(par1, par2 - 1, par3) != Blocks.air) {
-			Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
-			if(block.getMaterial() == Material.grass)
+			Material mblock = block.getMaterial();
+			if(mblock == Material.grass)
 				return 10F;
-			if(block.getMaterial() == Material.ground)
+			if(mblock == Material.ground)
 				return 7F;
 		}
         return super.getBlockPathWeight(par1, par2, par3);
@@ -138,8 +139,7 @@ public class EntityMaka extends EntityCreatureAgeable implements IAnimals, IGrou
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.weakness.id) return false;
-        if(potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
+        if(potionEffect.getPotionID() == Potion.weakness.id || potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
         return super.isPotionApplicable(potionEffect);
     }
     
@@ -165,8 +165,7 @@ public class EntityMaka extends EntityCreatureAgeable implements IAnimals, IGrou
     // ==================================================
 	@Override
 	public void setGrowingAge(int age) {
-		if(age == 0 && this.getAge() < 0)
-			if(this.getRNG().nextFloat() >= 0.9F) {
+		if(age == 0 && this.getAge() < 0 && this.getRNG().nextFloat() >= 0.9F) {
 				EntityMakaAlpha alpha = new EntityMakaAlpha(this.worldObj);
 				alpha.copyLocationAndAnglesFrom(this);
 				this.worldObj.spawnEntityInWorld(alpha);

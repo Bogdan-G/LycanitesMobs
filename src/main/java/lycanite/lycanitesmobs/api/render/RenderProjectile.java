@@ -95,7 +95,7 @@ public class RenderProjectile extends Render {
     	
     	// Render Laser Beam:
     	GL11.glPushMatrix();
-        GL11.glTranslated(par2, par4, par6);
+        GL11.glTranslatef((float)par2, (float)par4, (float)par6);
     	this.bindTexture(this.getLaserTexture(entity));
         
         // Rotation:
@@ -161,7 +161,7 @@ public class RenderProjectile extends Render {
         float f8 = 0.5F;
         GL11.glRotatef(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-        GL11.glTranslated(-scale / 2, -scale / 2, -scale / 2);
+        GL11.glTranslatef(-scale / 2f, -scale / 2f, -scale / 2f);
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, 1.0F, 0.0F);
         tessellator.addVertexWithUV((double)(0.0F - f7), (double)(0.0F - f8), 0.0D, (double)uMin, (double)vMax);

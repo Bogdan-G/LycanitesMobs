@@ -123,8 +123,8 @@ public class EntityAspid extends EntityCreatureAgeable implements IAnimals, IGro
 	// ========== Pathing Weight ==========
 	@Override
 	public float getBlockPathWeight(int par1, int par2, int par3) {
-		if(this.worldObj.getBlock(par1, par2 - 1, par3) != Blocks.air) {
-			Block block = this.worldObj.getBlock(par1, par2 - 1, par3);
+		Block block = this.worldObj.getBlock(par1, par2 - 1, par3); 
+		if(block != Blocks.air) {
 			if(block.getMaterial() == Material.grass)
 				return 10F;
 			if(block.getMaterial() == Material.ground)
@@ -165,8 +165,7 @@ public class EntityAspid extends EntityCreatureAgeable implements IAnimals, IGro
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.poison.id) return false;
-        if(potionEffect.getPotionID() == Potion.blindness.id) return false;
+        if(potionEffect.getPotionID() == Potion.poison.id || potionEffect.getPotionID() == Potion.blindness.id) return false;
         return super.isPotionApplicable(potionEffect);
     }
     

@@ -116,7 +116,7 @@ public class ConfigBase {
 	    }
 		catch (IOException e) {
             LycanitesMobs.printWarning("", "Config " + this.configFileName + " could not be created:");
-	    	System.out.println(e);
+	    	cpw.mods.fml.common.FMLLog.log(org.apache.logging.log4j.Level.WARN, (Throwable)e, "LycanitesMobs stacktrace: ");
             LycanitesMobs.printWarning("", "Make sure the config folder has write permissions or (if using Windows) isn't read only and that Minecraft is not in Program Files on a non-administrator account.");
 		}
 	    

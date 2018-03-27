@@ -97,20 +97,13 @@ public class EntityArcaneLaserStorm extends EntityProjectileBase {
             laser.setTime(20);
             double[] target = new double[]{this.posX, this.posY, this.posZ};
 
-            if(laserCount == 0)
-                target = this.getFacingPosition(this, laser.laserLength, 135);
-            if(laserCount == 1)
-                target = this.getFacingPosition(this, laser.laserLength, 90);
-            if(laserCount == 2)
-                target = this.getFacingPosition(this, laser.laserLength, 45);
-            if(laserCount == 3)
-                target = this.getFacingPosition(this, laser.laserLength, 0);
-            if(laserCount == 4)
-                target = this.getFacingPosition(this, laser.laserLength, -45);
-            if(laserCount == 5)
-                target = this.getFacingPosition(this, laser.laserLength, -90);
-            if(laserCount == 6)
-                target = this.getFacingPosition(this, laser.laserLength, -135);
+            if(laserCount == 0) target = this.getFacingPosition(this, laser.laserLength, 135);
+            else if(laserCount == 1) target = this.getFacingPosition(this, laser.laserLength, 90);
+            else if(laserCount == 2) target = this.getFacingPosition(this, laser.laserLength, 45);
+            else if(laserCount == 3) target = this.getFacingPosition(this, laser.laserLength, 0);
+            else if(laserCount == 4) target = this.getFacingPosition(this, laser.laserLength, -45);
+            else if(laserCount == 5) target = this.getFacingPosition(this, laser.laserLength, -90);
+            else if(laserCount == 6) target = this.getFacingPosition(this, laser.laserLength, -135);
 
             if(laserCount == 0 || laserCount == 2 || laserCount == 4 || laserCount == 6)
                 target[1] -= laser.laserLength / 2;

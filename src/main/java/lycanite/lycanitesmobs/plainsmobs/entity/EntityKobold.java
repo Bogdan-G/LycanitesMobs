@@ -187,8 +187,7 @@ public class EntityKobold extends EntityCreatureTameable implements IMob, IGroup
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.weakness.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.digSlowdown.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.weakness.id || par1PotionEffect.getPotionID() == Potion.digSlowdown.id) return false;
         return super.isPotionApplicable(par1PotionEffect);
     }
 	

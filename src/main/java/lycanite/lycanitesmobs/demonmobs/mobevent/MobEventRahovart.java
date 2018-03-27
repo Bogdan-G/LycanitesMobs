@@ -112,7 +112,7 @@ public class MobEventRahovart extends MobEventBoss {
                 int y = originY;
                 // Build Floor:
                 Block buildBlock = primaryBlock;
-                if(world.rand.nextDouble() > secondaryChance)
+                if(world.rand.nextFloat() > secondaryChance)
                     buildBlock = secondaryBlock;
                 world.setBlock(x, y, z, primaryBlock, 0, 2);
                 world.setBlock(x, y - 1, z, primaryBlock, 0, 2);
@@ -138,7 +138,7 @@ public class MobEventRahovart extends MobEventBoss {
         List<int[]> decorationCoords = new ArrayList<int[]>();
 
         while(angle < 360) {
-            angle += 5 + (5 * world.rand.nextDouble());
+            angle += 5 + (5 * world.rand.nextFloat());
             double angleRadians = Math.toRadians(angle);
             double x = radius * Math.cos(angleRadians) - Math.sin(angleRadians);
             double z = radius * Math.sin(angleRadians) + Math.cos(angleRadians);
@@ -170,7 +170,7 @@ public class MobEventRahovart extends MobEventBoss {
                     int stripRadius = Math.round(radius * (float) Math.sin(Math.toRadians(90 * stripNormal)));
 
                     for (int z = originZ - stripRadius; z <= originZ + stripRadius; z++) {
-                        if(world.rand.nextDouble() > secondaryChance)
+                        if(world.rand.nextFloat() > secondaryChance)
                             world.setBlock(x, y, z, primaryBlock, 0, 2);
                         else
                             world.setBlock(x, y, z, secondaryBlock, 0, 2);
@@ -180,7 +180,7 @@ public class MobEventRahovart extends MobEventBoss {
                 }
             }
             else {
-                if(world.rand.nextDouble() > secondaryChance)
+                if(world.rand.nextFloat() > secondaryChance)
                     world.setBlock(originX, y, originZ, primaryBlock, 0, 2);
                 else
                     world.setBlock(originX, y, originZ, secondaryBlock, 0, 2);

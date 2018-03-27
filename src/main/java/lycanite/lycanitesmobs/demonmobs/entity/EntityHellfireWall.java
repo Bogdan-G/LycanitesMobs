@@ -83,7 +83,7 @@ public class EntityHellfireWall extends EntityProjectileBase {
 
         if (!this.worldObj.isRemote) {
             List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
-            double d0 = 0.0D;
+            //double d0 = 0.0D;
             EntityLivingBase entitylivingbase = this.getThrower();
 
             for (int j = 0; j < list.size(); ++j) {
@@ -105,10 +105,7 @@ public class EntityHellfireWall extends EntityProjectileBase {
     @Override
     public boolean canDamage(EntityLivingBase targetEntity) {
         EntityLivingBase owner = this.getThrower();
-        if(owner == null) {
-            if(targetEntity instanceof EntityRahovart)
-                return false;
-            if(targetEntity instanceof IGroupDemon)
+        if(owner == null && (targetEntity instanceof EntityRahovart || targetEntity instanceof IGroupDemon)) {
                 return false;
         }
         return super.canDamage(targetEntity);

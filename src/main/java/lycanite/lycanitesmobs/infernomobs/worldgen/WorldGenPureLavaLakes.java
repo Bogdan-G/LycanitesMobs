@@ -56,14 +56,14 @@ public class WorldGenPureLavaLakes extends WorldGenLakes implements IWorldGenBas
         if(!this.isValidDimension(world))
             return;
 
-        if(this.generateSurfaceChance > 0 && (this.generateSurfaceChance >= 1 || random.nextDouble() <= this.generateSurfaceChance)) {
+        if(this.generateSurfaceChance > 0 && (this.generateSurfaceChance >= 1 || random.nextFloat() <= this.generateSurfaceChance)) {
             int x = chunkX * 16 + random.nextInt(16);
             int z = chunkZ * 16 + random.nextInt(16);
             int y = random.nextInt(128);
             this.generate(world, random, x, y, z);
         }
 
-        if(this.generateUndergroundChance > 0 && (this.generateUndergroundChance >= 1 || random.nextDouble() <= this.generateUndergroundChance)) {
+        if(this.generateUndergroundChance > 0 && (this.generateUndergroundChance >= 1 || random.nextFloat() <= this.generateUndergroundChance)) {
             int x = chunkX * 16 + random.nextInt(16);
             int z = chunkZ * 16 + random.nextInt(16);
             int top = Math.max(1, world.getTopSolidOrLiquidBlock(x, z) - 10);

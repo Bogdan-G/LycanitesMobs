@@ -8,6 +8,7 @@ import lycanite.lycanitesmobs.api.entity.EntityCreatureAgeable;
 import lycanite.lycanitesmobs.api.entity.ai.*;
 import lycanite.lycanitesmobs.api.info.DropRate;
 import lycanite.lycanitesmobs.api.info.ObjectLists;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
@@ -89,9 +90,10 @@ public class EntitySilex extends EntityCreatureAgeable implements IAnimals, IGro
 	public float getBlockPathWeight(int par1, int par2, int par3) {
 		int waterWeight = 10;
 		
-        if(this.worldObj.getBlock(par1, par2, par3) == Blocks.water)
+        Block block = this.worldObj.getBlock(par1, par2, par3);
+        if(block == Blocks.water)
         	return (super.getBlockPathWeight(par1, par2, par3) + 1) * (waterWeight + 1);
-		if(this.worldObj.getBlock(par1, par2, par3) == Blocks.flowing_water)
+		if(block == Blocks.flowing_water)
 			return (super.getBlockPathWeight(par1, par2, par3) + 1) * waterWeight;
         if(this.worldObj.isRaining() && this.worldObj.canBlockSeeTheSky(par1, par2, par3))
         	return (super.getBlockPathWeight(par1, par2, par3) + 1) * (waterWeight + 1);
@@ -128,10 +130,7 @@ public class EntitySilex extends EntityCreatureAgeable implements IAnimals, IGro
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(ObjectManager.getPotionEffect("Penetration") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Penetration").id) return false;
-        if(ObjectManager.getPotionEffect("Paralysis") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
+        if(ObjectManager.getPotionEffect("Penetration") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Penetration").id || ObjectManager.getPotionEffect("Paralysis") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Paralysis").id) return false;
         return super.isPotionApplicable(potionEffect);
     }
     

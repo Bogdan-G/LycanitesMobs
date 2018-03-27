@@ -22,6 +22,7 @@ import lycanite.lycanitesmobs.api.entity.ai.EntityAIWatchClosest;
 import lycanite.lycanitesmobs.api.info.DropRate;
 import lycanite.lycanitesmobs.api.info.MobInfo;
 import lycanite.lycanitesmobs.api.info.ObjectLists;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -132,11 +133,11 @@ public class EntityErepede extends EntityCreatureRideable implements IGroupPreda
     // ========== Movement Speed Modifier ==========
     @Override
     public float getAISpeedModifier() {
-    	if(this.hasRiderTarget())
-	    	if(this.worldObj.getBlock((int)this.posX, (int)this.boundingBox.minY - 1, (int)this.posZ).getMaterial() == Material.sand
-	    		|| (this.worldObj.getBlock((int)this.posX, (int)this.boundingBox.minY - 1, (int)this.posZ).getMaterial() == Material.air
-	    		&& this.worldObj.getBlock((int)this.posX, (int)this.boundingBox.minY - 2, (int)this.posZ).getMaterial() == Material.sand))
+    	if(this.hasRiderTarget()) {
+	    	Material mblock = this.worldObj.getBlock((int)this.posX, (int)this.boundingBox.minY - 1, (int)this.posZ).getMaterial();
+	    	if(mblock == Material.sand || (mblock == Material.air && this.worldObj.getBlock((int)this.posX, (int)this.boundingBox.minY - 2, (int)this.posZ).getMaterial() == Material.sand))
 	    		return 1.8F;
+    	}
     	return 1.0F;
     }
     
@@ -150,12 +151,7 @@ public class EntityErepede extends EntityCreatureRideable implements IGroupPreda
     //                   Mount Ability
     // ==================================================
     public void mountAbility(Entity rider) {
-    	if(this.worldObj.isRemote)
-    		return;
-    	
-    	if(this.abilityToggled)
-    		return;
-    	if(this.getStamina() < this.getStaminaCost())
+    	if(this.worldObj.isRemote || this.abilityToggled || this.getStamina() < this.getStaminaCost())
     		return;
     	
     	if(rider instanceof EntityPlayer) {
@@ -232,8 +228,7 @@ public class EntityErepede extends EntityCreatureRideable implements IGroupPreda
     
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.hunger.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.weakness.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.hunger.id || par1PotionEffect.getPotionID() == Potion.weakness.id) return false;
         return super.isPotionApplicable(par1PotionEffect);
     }
     

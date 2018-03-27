@@ -20,7 +20,7 @@ public class SpawnTypeSleep extends SpawnTypeBase {
     // ==================================================
     @Override
     public boolean canSpawn(long tick, World world, int x, int y, int z, boolean rare) {
-        if(world.rand.nextDouble() >= this.chance)
+        if(world.rand.nextFloat() >= this.chance)
             return false;
         return true;
     }

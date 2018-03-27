@@ -130,7 +130,7 @@ public class EntityProjectileRapidFire extends EntityProjectileBase {
 	        world.spawnEntityInWorld((Entity)projectile);
 		}
 		catch (Exception e) {
-			System.out.println("[WARNING] [LycanitesMobs] EntityRapidFire was unable to instantiate the given projectile class.");
+			cpw.mods.fml.common.FMLLog.info("[WARNING] [LycanitesMobs] EntityRapidFire was unable to instantiate the given projectile class.");
 			e.printStackTrace();
 		}
     }

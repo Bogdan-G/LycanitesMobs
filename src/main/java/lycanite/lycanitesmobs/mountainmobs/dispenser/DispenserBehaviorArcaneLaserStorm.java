@@ -27,6 +27,6 @@ public class DispenserBehaviorArcaneLaserStorm extends DispenserBehaviorBase {
 	// ==================================================
 	@Override
     protected void playDispenseSound(IBlockSource blockSource) {
-        blockSource.getWorld().playSoundEffect(blockSource.getX(), blockSource.getY(), blockSource.getZ(), AssetManager.getSound("arcanelaserstorm"), 1.0F, 1.0F / (new Random().nextFloat() * 0.4F + 0.8F));
+        blockSource.getWorld().playSoundEffect(blockSource.getX(), blockSource.getY(), blockSource.getZ(), AssetManager.getSound("arcanelaserstorm"), 1.0F, 1.0F / (new org.bogdang.modifications.random.XSTR().nextFloat() * 0.4F + 0.8F));
     }
 }

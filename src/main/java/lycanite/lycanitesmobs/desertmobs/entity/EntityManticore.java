@@ -144,8 +144,7 @@ public class EntityManticore extends EntityCreatureTameable implements IMob, IGr
     
     @Override
     public boolean isPotionApplicable(PotionEffect par1PotionEffect) {
-        if(par1PotionEffect.getPotionID() == Potion.hunger.id) return false;
-        if(par1PotionEffect.getPotionID() == Potion.weakness.id) return false;
+        if(par1PotionEffect.getPotionID() == Potion.hunger.id || par1PotionEffect.getPotionID() == Potion.weakness.id) return false;
         super.isPotionApplicable(par1PotionEffect);
         return true;
     }

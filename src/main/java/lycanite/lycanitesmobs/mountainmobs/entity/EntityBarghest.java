@@ -110,11 +110,8 @@ public class EntityBarghest extends EntityCreatureRideable implements IGroupPred
         super.onLivingUpdate();
         
         // Random Leaping:
-        if(!this.isTamed() && this.onGround && !this.worldObj.isRemote) {
-        	if(this.hasAttackTarget()) {
-        		if(this.rand.nextInt(10) == 0)
+        if(!this.isTamed() && this.onGround && !this.worldObj.isRemote && this.hasAttackTarget() && this.rand.nextInt(10) == 0) {
         			this.leap(4.0F, 0.7D, this.getAttackTarget());
-        	}
         }
 
         // Leap Landing Paralysis:
@@ -213,14 +210,7 @@ public class EntityBarghest extends EntityCreatureRideable implements IGroupPred
     //                   Mount Ability
     // ==================================================
     public void mountAbility(Entity rider) {
-    	if(this.worldObj.isRemote)
-    		return;
-
-        if(!this.onGround)
-            return;
-    	if(this.abilityToggled)
-    		return;
-    	if(this.getStamina() < this.getStaminaCost())
+    	if(this.worldObj.isRemote || !this.onGround || this.abilityToggled || this.getStamina() < this.getStaminaCost())
     		return;
     	
     	this.playJumpSound();
@@ -261,9 +251,7 @@ public class EntityBarghest extends EntityCreatureRideable implements IGroupPred
    	// ==================================================
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.digSlowdown.id) return false;
-        if(ObjectManager.getPotionEffect("Weight") != null)
-            if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
+        if(potionEffect.getPotionID() == Potion.digSlowdown.id || ObjectManager.getPotionEffect("Weight") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Weight").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }

@@ -220,7 +220,7 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
                 if(target.posY > this.posY + this.height + 5) {
                     for(int i = 0; i < 3; i++) {
                         EntityNetherSoul minion = new EntityNetherSoul(this.worldObj);
-                        this.summonMinion(minion, this.getRNG().nextDouble() * 360, 5);
+                        this.summonMinion(minion, this.getRNG().nextFloat() * 360, 5);
                         minion.setMasterTarget(null); // Clear master target so that these minions don't break phase 3 barriers.
                     }
                 }
@@ -286,7 +286,7 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
                 if(summonAmount > 0)
                     for(int summonCount = 0; summonCount <= summonAmount; summonCount++) {
                         EntityBelph minion = new EntityBelph(this.worldObj);
-                        this.summonMinion(minion, this.getRNG().nextDouble() * 360, 5);
+                        this.summonMinion(minion, this.getRNG().nextFloat() * 360, 5);
                         this.hellfireBelphMinions.add(minion);
                     }
             }
@@ -341,7 +341,7 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
                 if(summonAmount > 0)
                     for(int summonCount = 0; summonCount <= summonAmount; summonCount++) {
                         EntityBehemoth minion = new EntityBehemoth(this.worldObj);
-                        this.summonMinion(minion, this.getRNG().nextDouble() * 360, 5);
+                        this.summonMinion(minion, this.getRNG().nextFloat() * 360, 5);
                         this.hellfireBehemothMinions.add(minion);
                     }
             }
@@ -351,7 +351,7 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
                 int summonAmount = this.getRNG().nextInt(4) - 1; // 0-2 Belphs with 50% fail chance.
                 for(int summonCount = 0; summonCount <= summonAmount; summonCount++) {
                     EntityBelph minion = new EntityBelph(this.worldObj);
-                    this.summonMinion(minion, this.getRNG().nextDouble() * 360, 5);
+                    this.summonMinion(minion, this.getRNG().nextFloat() * 360, 5);
                 }
             }
         }
@@ -396,7 +396,7 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
                 if(summonAmount > 0)
                     for(int summonCount = 0; summonCount <= summonAmount; summonCount++) {
                         EntityBehemoth minion = new EntityBehemoth(this.worldObj);
-                        this.summonMinion(minion, this.getRNG().nextDouble() * 360, 5);
+                        this.summonMinion(minion, this.getRNG().nextFloat() * 360, 5);
                         this.hellfireBehemothMinions.add(minion);
                     }
             }
@@ -408,14 +408,14 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
                 if(summonAmount > 0)
                 for(int summonCount = 0; summonCount <= summonAmount; summonCount++) {
                     EntityBelph minion = new EntityBelph(this.worldObj);
-                    this.summonMinion(minion, this.getRNG().nextDouble() * 360, 5);
+                    this.summonMinion(minion, this.getRNG().nextFloat() * 360, 5);
                 }
                 summonAmount = this.getRNG().nextInt(3); // 0-2 Nether Souls
                 summonAmount *= this.playerTargets.size();
                 if(summonAmount > 0)
                 for(int summonCount = 0; summonCount <= summonAmount; summonCount++) {
                     EntityNetherSoul minion = new EntityNetherSoul(this.worldObj);
-                    this.summonMinion(minion, this.getRNG().nextDouble() * 360, 5);
+                    this.summonMinion(minion, this.getRNG().nextFloat() * 360, 5);
                 }
             }
         }
@@ -697,11 +697,7 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
 
     @Override
     public boolean isDamageEntityApplicable(Entity entity) {
-        if(entity instanceof EntityPigZombie) {
-            entity.setDead();
-            return false;
-        }
-        if(entity instanceof EntityIronGolem) {
+        if(entity instanceof EntityPigZombie || entity instanceof EntityIronGolem) {
             entity.setDead();
             return false;
         }
@@ -733,7 +729,7 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
                 NBTTagCompound belphID = belphIDs.getCompoundTagAt(i);
                 if(belphID.hasKey("ID")) {
                     Entity entity = this.worldObj.getEntityByID(belphID.getInteger("ID"));
-                    if(entity != null && entity instanceof EntityBelph)
+                    if(entity instanceof EntityBelph)
                         this.hellfireBelphMinions.add((EntityBelph)entity);
                 }
             }
@@ -744,7 +740,7 @@ public class EntityRahovart extends EntityCreatureBase implements IMob, IBossDis
                 NBTTagCompound behemothID = behemothIDs.getCompoundTagAt(i);
                 if(behemothID.hasKey("ID")) {
                     Entity entity = this.worldObj.getEntityByID(behemothID.getInteger("ID"));
-                    if(entity != null && entity instanceof EntityBehemoth)
+                    if(entity instanceof EntityBehemoth)
                         this.hellfireBehemothMinions.add((EntityBehemoth)entity);
                 }
             }

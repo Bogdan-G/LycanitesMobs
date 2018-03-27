@@ -175,17 +175,12 @@ public class EntitySerpix extends EntityCreatureTameable implements IGroupPredat
         int i = MathHelper.floor_double(this.posX);
         int j = MathHelper.floor_double(this.posY);
         int k = MathHelper.floor_double(this.posZ);
-        if(this.worldObj.getBlock(i, j - 1, k) != Blocks.air) {
-        	Block floorBlock = this.worldObj.getBlock(i, j - 1, k);
-        	if(floorBlock.getMaterial() == Material.ground) return true;
-        	if(floorBlock.getMaterial() == Material.grass) return true;
-        	if(floorBlock.getMaterial() == Material.leaves) return true;
-        	if(floorBlock.getMaterial() == Material.sand) return true;
-        	if(floorBlock.getMaterial() == Material.clay) return true;
-        	if(floorBlock.getMaterial() == Material.snow) return true;
-        	if(floorBlock.getMaterial() == Material.craftedSnow) return true;
+        Block floorBlock = this.worldObj.getBlock(i, j - 1, k);
+        if(floorBlock != Blocks.air) {
+        	Material mblock = floorBlock.getMaterial();
+        	if(mblock == Material.ground || mblock == Material.grass || mblock == Material.leaves || mblock == Material.sand || mblock == Material.clay || mblock == Material.snow || mblock == Material.craftedSnow) return true;
         }
-        if(this.worldObj.getBlock(i, j - 1, k) == Blocks.netherrack) return true;
+        if(floorBlock == Blocks.netherrack) return true;
     	return false;
     }
     
@@ -221,16 +216,13 @@ public class EntitySerpix extends EntityCreatureTameable implements IGroupPredat
    	// ==================================================
     @Override
     public boolean isDamageTypeApplicable(String type) {
-        if(type.equals("ooze")) return false;
-    	if(type.equals("cactus")) return false;
-    	if(type.equals("inWall")) return false;
+        if(type.equals("ooze") || type.equals("cactus") || type.equals("inWall")) return false;
     	return super.isDamageTypeApplicable(type);
     }
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.moveSlowdown.id) return false;
-        if(potionEffect.getPotionID() == Potion.hunger.id) return false;
+        if(potionEffect.getPotionID() == Potion.moveSlowdown.id || potionEffect.getPotionID() == Potion.hunger.id) return false;
         return super.isPotionApplicable(potionEffect);
     }
 	

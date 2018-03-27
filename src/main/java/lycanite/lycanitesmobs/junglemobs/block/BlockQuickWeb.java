@@ -29,7 +29,7 @@ public class BlockQuickWeb extends BlockBase {
 		this.setup();
 		
 		// Stats:
-		this.tickRate = ConfigBase.getConfig(this.group, "general").getBool("Features", "Enable Quickweb", true) ? 200 : 1;
+		this.tickRate = ConfigBase.getConfig(this.group, "general").getBool("Features", "Enable Quickweb", true) ? 200 : 20;
 		this.removeOnTick = true;
 		this.loopTicks = false;
 		this.canBeCrushed = false;

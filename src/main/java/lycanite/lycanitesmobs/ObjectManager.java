@@ -24,21 +24,21 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ObjectManager {
 	
 	// Maps:
-	public static Map<String, Block> blocks = new HashMap<String, Block>();
-	public static Map<String, Fluid> fluids = new HashMap<String, Fluid>();
-    public static Map<Block, Item> buckets = new HashMap<Block, Item>();
-	public static Map<String, Item> items = new HashMap<String, Item>();
-    public static Map<String, Class> tileEntities = new HashMap<String, Class>();
-	public static Map<String, PotionBase> potionEffects = new HashMap<String, PotionBase>();
+	public static Map<String, Block> blocks = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, Block>();
+	public static Map<String, Fluid> fluids = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, Fluid>();
+    public static Map<Block, Item> buckets = new org.eclipse.collections.impl.map.mutable.UnifiedMap<Block, Item>();
+	public static Map<String, Item> items = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, Item>();
+    public static Map<String, Class> tileEntities = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, Class>();
+	public static Map<String, PotionBase> potionEffects = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, PotionBase>();
 	
-	public static Map<String, EntityListCustom> entityLists = new HashMap<String, EntityListCustom>();
-	public static Map<String, MobInfo> mobs = new HashMap<String, MobInfo>();
+	public static Map<String, EntityListCustom> entityLists = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, EntityListCustom>();
+	public static Map<String, MobInfo> mobs = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, MobInfo>();
 	
-	public static Map<String, Class> projectiles = new HashMap<String, Class>();
+	public static Map<String, Class> projectiles = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, Class>();
 
-    public static Map<String, DamageSource> damageSources = new HashMap<String, DamageSource>();
+    public static Map<String, DamageSource> damageSources = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, DamageSource>();
 
-    public static Map<String, Achievement> achievements = new HashMap<String, Achievement>();
+    public static Map<String, Achievement> achievements = new org.eclipse.collections.impl.map.mutable.UnifiedMap<String, Achievement>();
 	
 	public static GroupInfo currentGroup;
 	

@@ -142,15 +142,13 @@ public class EntityGrue extends EntityCreatureTameable implements IMob, IGroupSh
         // Particles:
         if(this.worldObj.isRemote)
 	        for(int i = 0; i < 2; ++i) {
-	            this.worldObj.spawnParticle("witchMagic", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+	            this.worldObj.spawnParticle("witchMagic", this.posX + (this.rand.nextFloat() - 0.5F) * (double)this.width, this.posY + this.rand.nextFloat() * (double)this.height, this.posZ + (this.rand.nextFloat() - 0.5F) * (double)this.width, 0.0D, 0.0D, 0.0D);
 	        }
     }
 
     public boolean canTeleportTo(World world, int x, int y, int z) {
         Block block = this.worldObj.getBlock(x, y, z);
-        if(block == null)
-            return false;
-        if(block.isNormalCube())
+        if(block == null || block.isNormalCube())
             return false;
         if(this.getSubspeciesIndex() >= 3)
             return true;
@@ -165,8 +163,7 @@ public class EntityGrue extends EntityCreatureTameable implements IMob, IGroupSh
    	// ==================================================
     @Override
     public boolean canStealth() {
-    	if(this.worldObj.isRemote) return false;
-		if(this.isMoving()) return false;
+    	if(this.worldObj.isRemote || this.isMoving()) return false;
     	return this.testLightLevel() <= 0;
     }
     
@@ -252,9 +249,7 @@ public class EntityGrue extends EntityCreatureTameable implements IMob, IGroupSh
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect) {
-        if(potionEffect.getPotionID() == Potion.blindness.id) return false;
-        if(ObjectManager.getPotionEffect("Fear") != null)
-        	if(potionEffect.getPotionID() == ObjectManager.getPotionEffect("Fear").id) return false;
+        if(potionEffect.getPotionID() == Potion.blindness.id || ObjectManager.getPotionEffect("Fear") != null && potionEffect.getPotionID() == ObjectManager.getPotionEffect("Fear").id) return false;
         super.isPotionApplicable(potionEffect);
         return true;
     }
